@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <!-- arquivos js -->
+  <script src="components/loader.js"></script>
+  <script src="components/acao.js"></script>
+ 
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+     <script src="components/acao.js"></script>  
+    <!-- Compiled and minified JavaScript -->
+   <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="components/materialize.min.js"></script>
+  <!-- arquivos de css -->
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="css/materalize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body >
+  <!-- Titulo -->
+  <div class="row">
+    <div class="col s12">
+      <h3 class="center-align">Aplicando Filtros</h3>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <!-- botao -->
+  <div class="row">
+    <div class="col s5 offset-s5">
+       <a class="btn-floating btn-large black pulse center-align"><i class="material-icons" id="camera">camera_alt</i></a>
+    </div>
+  </div>
+  <!-- legenda -->
+  <div class="row">
+    <div class="col s12">
+      <div class="divider"></div>
+       <blockquote>
+        Selecione Um Filtro Para Aplicar Na Foto.
+      </blockquote>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <!-- imagem -->
+  <div class="row">
+    <div class="col s8 offset-s2">
+      <img src="" alt="" class="z-depth-3 responsive-img center-align" id="demo">
+    </div>
+    
+  </div>
+   <!-- Titulo-Range -->
+  <div class="row">
+    <div class="divider"></div>
+    <div class="col s12">
+      <h5 class="red-text center-align">Escolha Um Filtro</h5>
+    </div>
+    <div class="divider"></div>
+  </div>
+  
+  <!-- range -->
+  <div class="row">
+    <div class="col s10 offset-s1">
+       <label  class="" for="">Opacidade:</label> <span id="slider_value">Nada Por Aqui.</span>
+        <input type="range" id="rangeOpacidade" min="0" max="100" value="100" />
+    </div>
+    <div class="col s10 offset-s1">
+       <label for="">Saturação:</label> <span id="saturacao_value">Nada Por Aqui.</span>
+        <input type="range" id="rangeSaturacao" min="0" max="10" value="0" />
+    </div>
+    <div class="col s10 offset-s1">
+       <label for="">Escala de Cinza:</label>  <span id="cinza_value">Nada Por Aqui.</span>
+       <p class="range-field" id="cinza"> </p>
+        <input type="range" id="rangeCinza" min="0" max="100" value="0" />
+    </div>
+    <div class="col s10 offset-s1">
+       <form action="#">
+        <label for=""><b>Desfoque:</b></label>  <span id="desfoque_value">Nada Por Aqui.</span>
+         <p class="range-field" id="desfoque"> </p>
+          <input type="range" id="rangeDesfoque" min="0" max="100" value="0" />
+      
+       </form>
+    </div>
+  </div>
+</body>
+<script>
+$(function() {
+   var opacidade = document.getElementById("rangeOpacidade").value;
+   var saturacao = document.getElementById("rangeSaturacao").value;
+   var cinza = document.getElementById("rangeCinza").value;
+   var desfoque = document.getElementById("rangeDesfoque").value;
+   $(document).on("input charge","#rangeOpacidade",function(){
+     // $(".enviar").click(function(){
+        opacidade = document.getElementById("rangeOpacidade").value;
+        document.getElementById("demo").style.filter = Filtros();
+     // });
+      //Mostrando Valor
+     $('#slider_value').html( $(this).val() );
+  
+  });
+  $(document).on("input charge","#rangeSaturacao",function(){
+      //$(".enviar").click(function()
+      saturacao = document.getElementById("rangeSaturacao").value;
+        document.getElementById("demo").style.filter = Filtros();
+      //});
+      //Mostrando Valor
+     $('#saturacao_value').html( $(this).val() );
+  
+  });      // });
+  $(document).on("input charge","#rangeCinza",function(){
+     // $(".enviar").click(function(){
+        cinza = document.getElementById("rangeCinza").value;
+        document.getElementById("demo").style.filter = Filtros();
+     // });
+     $('#cinza_value').html( $(this).val() );
+  
+  });
+  $(document).on("input charge","#rangeDesfoque",function(){
+    //console.log($a);
+      //$(".enviar").click(function(){
+        desfoque = document.getElementById("rangeDesfoque").value;
+        document.getElementById("demo").style.filter = Filtros();
+      //});
+     $('#desfoque_value').html( $(this).val() );
+  
+  }); 
+  function Filtros(){
+    filtro = "blur("+desfoque+"px) grayscale("+cinza+"%) ";
+    filtro+= "saturate("+saturacao+") opacity("+opacidade+"%) ";
+    return filtro;
+  }
+});
+   
+
+</script>
+</html>
