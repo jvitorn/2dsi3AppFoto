@@ -95,10 +95,10 @@ $(function() {
    var cinza = document.getElementById("rangeCinza").value;
    var desfoque = document.getElementById("rangeDesfoque").value;
    $(document).on("input charge","#rangeOpacidade",function(){
-     // $(".enviar").click(function(){
+     
         opacidade = document.getElementById("rangeOpacidade").value;
         document.getElementById("demo").style.filter = Filtros();
-     // });
+    
       //Mostrando Valor
      $('#slider_value').html( $(this).val() );
   
